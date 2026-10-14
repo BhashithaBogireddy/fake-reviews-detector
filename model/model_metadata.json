@@ -1,0 +1,34 @@
+{
+  "project": "Fake Reviews Detector",
+  "model_file": "fake_review_pipeline.joblib",
+  "model_type": "scikit-learn Pipeline: TfidfVectorizer(1-2 grams) + LogisticRegression(class_weight=balanced)",
+  "input": "raw review text (string); preprocessing is inside the pipeline",
+  "label_map": {
+    "0": "Genuine (OR, original)",
+    "1": "Fake (CG, computer-generated)"
+  },
+  "probability_column_for_fake": 1,
+  "decision_threshold": 0.5,
+  "dataset": "Fake Reviews Dataset (Salminen et al., 2021); Kaggle: mexwell/fake-reviews-dataset. CG = computer-generated (reported GPT-2), OR = original reviews (presumed human)",
+  "training_rows": 32324,
+  "test_rows": 8081,
+  "test_metrics_fake_class": {
+    "accuracy": 0.9343,
+    "precision": 0.9493,
+    "recall": 0.9175,
+    "f1": 0.9331
+  },
+  "library_versions": {
+    "python": "3.13.16",
+    "scikit-learn": "1.6.1",
+    "joblib": "1.6.0",
+    "numpy": "2.1.3",
+    "scipy": "1.16.3"
+  },
+  "limitations": [
+    "Trained on computer-generated vs presumed-human reviews from one dataset; not validated on paid human fake reviews or real marketplaces.",
+    "Less accurate on very short reviews.",
+    "English only.",
+    "No product- or reviewer-level generalisation test (dataset has no such IDs)."
+  ]
+}
